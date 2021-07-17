@@ -1,5 +1,7 @@
-# кодировка utf-8
-# данный скрипт для брутфорса биткоин кошельков
+# ВНИМАНИЕ! СОХРАНЯЙ В utf-8
+# Данный скрипт для брутфорса биткоин кошельков, испоьзовать на свой страх и риск. Автор не несет отвественность за любые действия которые Вы совершаете с использованием данного софта!
+# ПО поставляеться "как есть" и ВСЯ ОТВЕСВТЕННОСТЬ ЗА ЕГО РАБОТУ лежит на конечном потребителе.
+# импортируем библиотеки
 from bit import Key
 import os
 import json
@@ -9,10 +11,8 @@ import hashlib
 import requests
 import binascii
 
-
 class pau:
     pau = 0
-
 
 def prikey():
     return binascii.hexlify(os.urandom(32)).decode('utf-8')
@@ -52,7 +52,7 @@ def address(pubkey):
         count += 1
     return ''.join(result[::-1])
 
-
+# Для чека используеться API запрос биржы "http://webbtc.com/address/" 
 def balance(address):
     APIGet = requests.get(
         "http://webbtc.com/address/" + str(address) + ".json")
