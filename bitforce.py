@@ -17,13 +17,11 @@ class pau:
 def prikey():
     return binascii.hexlify(os.urandom(32)).decode('utf-8')
 
-
 def pubkey(prikey):
     prikey = binascii.unhexlify(prikey)
     sign = ecdsa.SigningKey.from_string(prikey, curve=ecdsa.SECP256k1)
     return '04' + binascii.hexlify(
         sign.verifying_key.to_string()).decode('utf-8')
-
 
 def address(pubkey):
     alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz"
@@ -52,7 +50,7 @@ def address(pubkey):
         count += 1
     return ''.join(result[::-1])
 
-# Для чека используеться API запрос биржы "http://webbtc.com/address/" 
+# Для чека используеться API запрос биржы "http://webbtc.com/address/"  .Биржа не воркает, буду искать варики по замене API.
 def balance(address):
     APIGet = requests.get(
         "http://webbtc.com/address/" + str(address) + ".json")
